@@ -1,0 +1,92 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.example.john.maptest"
+        minSdkVersion 28
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+    packagingOptions {
+        pickFirst 'stylesheet.css'
+        pickFirst 'constant-values.html'
+        pickFirst 'deprecated-list.html'
+        pickFirst 'allclasses-noframe.html'
+        //common
+        pickFirst 'com/here/android/mpa/common/package-frame.html'
+        pickFirst 'com/here/android/mpa/common/ViewObject.Type.html'
+        pickFirst 'com/here/android/mpa/common/CopyrightLogoPosition.html'
+        pickFirst 'com/here/android/mpa/common/MapActivity.html'
+        pickFirst 'com/here/android/mpa/common/GeoBoundingBox.html'
+        pickFirst 'com/here/android/mpa/common/RoadElement.FormOfWay.html'
+        pickFirst 'com/here/android/mpa/common/ViewRect.html'
+        pickFirst 'com/here/android/mpa/common/RoadElement.PluralType.html'
+        //search
+        pickFirst 'com/here/android/mpa/search/Location.html'
+        pickFirst 'com/here/android/mpa/search/Media.Type.html'
+        pickFirst 'com/here/android/mpa/search/ImageMedia.html'
+        pickFirst 'com/here/android/mpa/search/HereRequest.html'
+        pickFirst 'com/here/android/mpa/search/ExploreRequest.html'
+        pickFirst 'com/here/android/mpa/search/SearchRequest.html'
+        pickFirst 'com/here/android/mpa/search/ReportingLink.html'
+        pickFirst 'com/here/android/mpa/search/CreateLink.html'
+        pickFirst 'com/here/android/mpa/search/TextSuggestionRequest.html'
+        pickFirst 'com/here/android/mpa/search/MediaCollectionPageRequest.html'
+        pickFirst 'com/here/android/mpa/search/TextAutoSuggestionRequest.html'
+        pickFirst 'com/here/android/mpa/search/RatingMedia.html'
+        pickFirst 'com/here/android/mpa/search/ContactDetail.html'
+        pickFirst 'com/here/android/mpa/search/ViaLink.html'
+        pickFirst 'com/here/android/mpa/search/ExtendedAttribute.html'
+        //routing
+        pickFirst 'com/here/android/mpa/routing/Maneuver.html'
+        pickFirst 'com/here/android/mpa/routing/RouteElements.html'
+        pickFirst 'com/here/android/mpa/routing/package-tree.html'
+        pickFirst 'com/here/android/mpa/routing/RouteResult.html'
+        pickFirst 'com/here/android/mpa/routing/RouteManager.Listener.html'
+        pickFirst 'com/here/android/mpa/routing/Maneuver.Action.html'
+        pickFirst 'com/here/android/mpa/routing/RouteTta.html'
+        //mapping
+        pickFirst 'com/here/android/mpa/mapping/MapFragment.html'
+        pickFirst 'com/here/android/mpa/mapping/MapContainer.html'
+        pickFirst 'com/here/android/mpa/mapping/MapMarker.OnDragListener.html'
+        pickFirst 'com/here/android/mpa/mapping/MapRasterTileSource.MapTileSystemHelper.html'
+        pickFirst 'com/here/android/mpa/mapping/MapRasterTileSource.html'
+        pickFirst 'com/here/android/mpa/mapping/Map.PixelResult.html'
+        pickFirst 'com/here/android/mpa/mapping/Map.PixelResult.Error.html'
+        pickFirst 'com/here/android/mpa/mapping/MapRoute.html'
+        pickFirst 'com/here/android/mpa/mapping/MapRoute.RenderType.html'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:28.0.0-alpha3'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'com.android.support:design:28.0.0-alpha3'
+    implementation ':HERE-sdk-javadoc'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}

@@ -18,8 +18,8 @@
         android:hardwareAccelerated="true">
 
         <activity
-            android:name=".BasicMapActivity"
-            android:label="Hello HERE Maps!">
+            android:name="com.example.john.maptest.BasicMapActivity"
+            android:label="Hello World!">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
