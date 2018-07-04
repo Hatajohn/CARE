@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <style
+        android:name="AppTheme.NoActionBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <item android:name="coordinatorLayoutStyle">@style/Widget.Design.CoordinatorLayout</item>
+    </style>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_launcher_background"
+        android:contentDescription="@android:string/untitled"
+        app:srcCompat="@drawable/ic_launcher_background"
+        tools:layout_editor_absoluteX="174dp"
+        tools:layout_editor_absoluteY="100dp" />
+
+</android.support.constraint.ConstraintLayout>
