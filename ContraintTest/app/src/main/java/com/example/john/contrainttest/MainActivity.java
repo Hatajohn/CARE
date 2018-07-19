@@ -10,11 +10,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.location.Location;
-import android.location.Criteria;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.app.ActivityCompat;
+
+import com.here.android.mpa.common.PositioningManager;
+import com.here.android.mpa.common.LocationMethod;
+
+import org.w3c.dom.Text;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -30,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int MY_PERMISSION_ACCESS_FINE_LOCATION = 11;
     private Thread runner;
     private int threadCount = 0;
+    private PositioningManager ppos;
     private int floor = 1;
     private LocationManager lm;
     private Location loc;
@@ -53,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
             bestProvider = String.valueOf(lm.GPS_PROVIDER);
             TextView lat = findViewById(R.id.textView3);
             TextView lon = findViewById(R.id.textView4);
+            TextView x = findViewById(R.id.textView6);
+            TextView y = findViewById(R.id.textView7);
             ImageView user = findViewById(R.id.user);
             ImageView map = findViewById(R.id.imageView);
             if ( ContextCompat.checkSelfPermission( getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION ) == PackageManager.PERMISSION_GRANTED
@@ -99,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                         } else if (loc.getLatitude() < minLat) {
                             user.setY((float) (0));
                         } else {
-                            user.setY((float) (Math.abs((loc.getLatitude() - maxLat) / maxLat * 690)));
+                            user.setY((float) (Math.abs((loc.getLatitude() - maxLat) / maxLat * 680 * 1000000 % 1000))); // 690
                         }
 
                         if (loc.getLongitude() < maxLong) { //  The farther west the lower the value
@@ -107,7 +114,9 @@ public class MainActivity extends AppCompatActivity {
                         } else if (loc.getLongitude() > minLong) {
                             user.setX((float) (990));
                         } else {
-                            user.setX((float) (Math.abs((loc.getLongitude() - maxLong) / maxLong * 990)));
+                            user.setX((float) (Math.abs((loc.getLongitude() - maxLong) / maxLong * 980 * 1000000 % 1000)));  // 990
+                            x.setText("" + (Math.abs((loc.getLongitude() - maxLong) / maxLong * 980 * 1000000 % 1000)));
+                            y.setText("" + (Math.abs((loc.getLatitude() - maxLat) / maxLat * 680 * 1000000 % 1000)));
                         }
                     }
                 } else{
