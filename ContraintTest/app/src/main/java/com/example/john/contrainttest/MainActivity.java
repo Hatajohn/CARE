@@ -16,10 +16,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.app.ActivityCompat;
 
 import com.here.android.mpa.common.PositioningManager;
-import com.here.android.mpa.common.LocationMethod;
 
 import org.w3c.dom.Text;
-
 
 public class MainActivity extends AppCompatActivity {
     final double[] topLeft = {39.510926, -84.733822};
