@@ -1,5 +1,6 @@
 package com.example.john.contrainttest;
 
+import android.Manifest;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Looper;
@@ -14,10 +15,11 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.app.ActivityCompat;
+import android.net.wifi.WifiManager;
+import android.net.wifi.WifiInfo;
 
-import com.here.android.mpa.common.PositioningManager;
-
-import org.w3c.dom.Text;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 public class MainActivity extends AppCompatActivity {
     final double[] topLeft = {39.510926, -84.733822};
@@ -30,15 +32,24 @@ public class MainActivity extends AppCompatActivity {
     final double minLong = -84.733213;
     private static final int MY_PERMISSION_ACCESS_COARSE_LOCATION = 11;
     private static final int MY_PERMISSION_ACCESS_FINE_LOCATION = 11;
+    private static final int MY_PERMISSION_ACCESS_WIFI_STATE = 11;
     private Thread runner;
     private int threadCount = 0;
-    private PositioningManager ppos;
     private int floor = 1;
     private LocationManager lm;
     private Location loc;
     public String bestProvider;
     private LocationListener lLoc;
     Context mContext;
+
+    /* Distance Method
+
+    public double calculateDistance(double signalLevelInDb, double freqInMHz) {
+        double exp = (27.55 - (20 * Math.log10(freqInMHz)) + Math.abs(signalLevelInDb)) / 20.0;
+        return Math.pow(10.0, exp);
+    }
+
+    */
 
     public class runThread implements Runnable{
         public runThread(){
@@ -139,6 +150,11 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions( this, new String[] {  android.Manifest.permission.ACCESS_FINE_LOCATION  },
                     MY_PERMISSION_ACCESS_FINE_LOCATION );
         }
+        if ( ContextCompat.checkSelfPermission( this, Manifest.permission.ACCESS_WIFI_STATE ) != PackageManager.PERMISSION_GRANTED ) {
+
+            ActivityCompat.requestPermissions( this, new String[] {  Manifest.permission.ACCESS_WIFI_STATE  },
+                    MY_PERMISSION_ACCESS_WIFI_STATE );
+        }
 
         mContext = this;
         ImageView user = findViewById(R.id.user);
@@ -191,7 +207,8 @@ public class MainActivity extends AppCompatActivity {
                 ImageView map = findViewById(R.id.imageView);
                 int width = map.getWidth();
                 int height = map.getHeight();
-                if(threadCount < 3) { // max 3 threads
+                calculateDistance();
+                if(threadCount < 2) { // max 2 threads
                     runThread thr = new runThread("locate");
                 }
                 // Code here executes on main thread after user presses button
@@ -218,5 +235,45 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private int getSignalLevel(){
+        TextView check = findViewById(R.id.checkE);
+        check.setText(""+0);
+        if ( ContextCompat.checkSelfPermission( getApplicationContext(), Manifest.permission.ACCESS_WIFI_STATE ) == PackageManager.PERMISSION_GRANTED) {
+            WifiManager wifiManager = (WifiManager) mContext.getSystemService(Context.WIFI_SERVICE);
+            int numberOfLevels = 5;
+            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+            /*try {
+                PrintWriter writer = new PrintWriter("data.txt");
+                writer.println("Contents: " + wifiInfo.describeContents());
+                writer.println("Freq: " + wifiInfo.getFrequency());
+                writer.close();
+            }catch (FileNotFoundException e){
+                e.printStackTrace();
+            }*/
+            //  System.out.println("Contents: " + wifiInfo.describeContents());
+            //  System.out.println("Freq: " + wifiInfo.getFrequency());
+            int level = WifiManager.calculateSignalLevel(wifiInfo.getRssi(), numberOfLevels);
+            check.setText(""+1);
+            return level;
+        }
+        return -1;
+    }
+
+    public double calculateDistance(){
+        TextView dist = findViewById(R.id.dist1);
+        TextView check = findViewById(R.id.checkE);
+        double signalLevelInDb = getSignalLevel();
+        if(signalLevelInDb != -1) {
+            double exp1 = (27.55 - (20 * Math.log10(2400000)) + Math.abs(signalLevelInDb)) / 20.0;
+            double exp2 = (27.55 - (20 * Math.log10(5000000)) + Math.abs(signalLevelInDb)) / 20.0;
+            double exp = (Math.pow(10.0, exp1) + Math.pow(10.0, exp2)) / 2.0;
+            dist.setText("" + exp);
+            check.setText(""+2);
+            return exp;
+        }else{
+            dist.setText("<ERROR>");
+            return -1;
+        }
+    }
 
 }
