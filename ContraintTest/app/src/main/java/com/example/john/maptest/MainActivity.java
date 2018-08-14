@@ -185,31 +185,30 @@ public class MainActivity extends AppCompatActivity {
                         m.setText("" + f1.getPath());
                         ssidText.setText("Current SSID: " + ssidString);
                     }else if(written == 0){
-                        f = new File(Environment.getExternalStorageDirectory() + "/" + s + ".txt");
                         if(!f.exists()){
                             try {
-                                f.mkdirs();
+                                f = new File(mContext.getExternalFilesDir(null) + "/" + "scan2.txt");
                                 f.createNewFile();
+                                try {
+                                    PrintWriter p = new PrintWriter(f);
+                                    for(int i = 0; i < apMac.size(); i++){
+                                        p.print("<" + apMac.get(i) + "> : ");
+                                        for(int j : aprssi.get(i)){
+                                            p.print(j + ", ");
+                                        }
+                                        p.print("\n");
+                                    }
+                                    TextView path = findViewById(R.id.path);
+                                    path.setText(f.getAbsolutePath());
+                                    p.close();
+                                    written = 1;
+                                    MediaScannerConnection.scanFile(mContext, new String[]{f.toString()}, null, null);
+                                } catch(IOException e){
+                                    e.printStackTrace();
+                                }
                             }catch (IOException e) {
                                 e.printStackTrace();
                             }
-                        }
-                        try {
-                            PrintWriter p = new PrintWriter(f);
-                            for(int i = 0; i < apMac.size(); i++){
-                                p.print("<" + apMac.get(i) + "> : ");
-                                for(int j : aprssi.get(i)){
-                                    p.print(j + ", ");
-                                }
-                                p.print("\n");
-                            }
-                            TextView path = findViewById(R.id.path);
-                            path.setText(f.getAbsolutePath());
-                            p.close();
-                            written = 1;
-                            MediaScannerConnection.scanFile(mContext, new String[]{f.toString()}, null, null);
-                        } catch(IOException e){
-                            e.printStackTrace();
                         }
                     }
                 }
