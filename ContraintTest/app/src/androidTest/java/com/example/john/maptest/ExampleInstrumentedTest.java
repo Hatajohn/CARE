@@ -1,4 +1,4 @@
-package com.example.john.contrainttest;
+package com.example.john.maptest;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

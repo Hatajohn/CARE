@@ -1,4 +1,4 @@
-package com.example.john.contrainttest;
+package com.example.john.maptest;
 
 import org.junit.Test;
 

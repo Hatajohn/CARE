@@ -22,12 +22,13 @@ import android.widget.Toast;
 import android.util.Log;
 import android.view.Menu;
 
-/*
+
 import com.here.android.mpa.common.GeoCoordinate;
 import com.here.android.mpa.common.OnEngineInitListener;
 import com.here.android.mpa.mapping.Map;
 import com.here.android.mpa.mapping.MapFragment;
-*/
+import com.here.android.mpa.common.PositioningManager;
+
 
 
 public class BasicMapActivity extends Activity {
