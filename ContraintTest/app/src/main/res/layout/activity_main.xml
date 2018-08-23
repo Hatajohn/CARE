@@ -7,148 +7,114 @@
     tools:context=".MainActivity"
     tools:layout_editor_absoluteY="25dp">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="352dp"
-        android:layout_height="264dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/benton1"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/Button1"
-        android:layout_width="69dp"
-        android:layout_height="34dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="248dp"
-        android:text="Up"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.026"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/Button2"
-        android:layout_width="81dp"
-        android:layout_height="37dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Down"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.268"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.466" />
-
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="41dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
         android:text="SCAN"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Button1"
-        app:layout_constraintVertical_bias="0.01"
-        tools:layout_editor_absoluteX="5dp" />
-
-    <ImageView
-        android:id="@+id/user"
-        android:layout_width="26dp"
-        android:layout_height="23dp"
-        app:srcCompat="@drawable/mark"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="28dp" />
+        app:layout_constraintBottom_toTopOf="@+id/ssid"
+        app:layout_constraintEnd_toStartOf="@+id/save"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filename" />
 
     <Button
         android:id="@+id/save"
-        android:layout_width="69dp"
-        android:layout_height="37dp"
-        android:layout_marginBottom="237dp"
-        android:layout_marginEnd="220dp"
+        android:layout_width="82dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="11dp"
+        android:layout_marginEnd="188dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="11dp"
         android:text="save"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/ssid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button3"
+        app:layout_constraintTop_toBottomOf="@+id/filename" />
 
     <TextView
         android:id="@+id/ssid"
         android:layout_width="374dp"
         android:layout_height="28dp"
         android:layout_marginBottom="136dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="12dp"
         android:text="SSID: "
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/path"
-        tools:layout_editor_absoluteX="5dp" />
+        app:layout_constraintVertical_bias="0.375" />
 
     <TextView
         android:id="@+id/ssidList"
         android:layout_width="138dp"
         android:layout_height="25dp"
-        android:layout_marginBottom="36dp"
-        android:layout_marginEnd="242dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="16dp"
         android:text="APS: "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ssid"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toEndOf="@+id/signalStr"
+        app:layout_constraintTop_toBottomOf="@+id/ssid" />
 
     <TextView
         android:id="@+id/signalStr"
         android:layout_width="185dp"
         android:layout_height="63dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginStart="21dp"
+        android:layout_marginBottom="1dp"
+        android:layout_marginEnd="192dp"
+        android:layout_marginStart="7dp"
         android:layout_marginTop="16dp"
         android:text="Results: "
+        app:layout_constraintBottom_toTopOf="@+id/runTime"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/ssidList"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ssid" />
 
     <TextView
         android:id="@+id/path"
         android:layout_width="341dp"
         android:layout_height="42dp"
-        android:layout_marginBottom="176dp"
-        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="13dp"
+        android:layout_marginEnd="27dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="16dp"
         android:text="--"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/filename"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/filename"
-        android:layout_width="wrap_content"
+        android:layout_width="249dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="11dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="119dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="13dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="File name here"
-        app:layout_constraintBottom_toTopOf="@+id/path"
+        app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/Button2"
-        app:layout_constraintTop_toBottomOf="@+id/Button2" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/path" />
+
+    <TextView
+        android:id="@+id/runTime"
+        android:layout_width="137dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="197dp"
+        android:layout_marginEnd="231dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signalStr" />
 
 </android.support.constraint.ConstraintLayout>
